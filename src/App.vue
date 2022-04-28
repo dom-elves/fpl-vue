@@ -11,17 +11,54 @@
   </div>
 
   <router-view />
-  
+
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
 
 export default {
+
   name: 'App',
-  // components: {
-  //   HelloWorld
-  // }
+  
+  mounted() {
+
+    this.apiRequest()
+
+  },
+
+  methods: {
+    
+    apiRequest() {
+
+      const header = {
+                         headers: {
+                                      'Access-Control-Allow-Origin': 'https://localhost:8080',
+                                      'Content-Type': 'application/json',
+                                      'Access-Control-Allow-Methods': 'GET',
+                                    },
+                     }
+
+      const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+      const baseURL = 'https://fantasy.premierleague.com/api/bootstrap-static/';
+      
+      axios.get( proxyURL + baseURL, header)
+
+        .then(function (response) {
+    
+        let overview = response.data;
+        console.log(overview);
+      })
+        .catch(function (error) {
+    
+        console.log(error);
+      })
+  
+    }
+    
+  }
+
 }
 </script>
 
