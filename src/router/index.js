@@ -1,6 +1,11 @@
 import { createWebHistory, createRouter } from "vue-router";
 import PlayersList from "../components/PlayersList.vue";
 import GameWeeks from "../components/GameWeeks.vue";
+import App from '../App.vue';
+
+console.log(App.data().testdata);
+
+const gwData = App.data().testdata;
 
 const routes = [
   {
@@ -12,6 +17,7 @@ const routes = [
     path: "/gameweeks",
     name: "GameWeeks",
     component: GameWeeks,
+    props: { gameweeks: gwData }
   },
 ];
 

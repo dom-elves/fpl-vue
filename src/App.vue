@@ -10,9 +10,9 @@
 
       <!-- <p>{{ gameweeks }}</p> -->
 
-      <div v-for="gameweek in gameweeks" :key="gameweek.id">
+      <!-- <div v-for="gameweek in gameweeks" :key="gameweek.id">
         {{ gameweek.id }}
-      </div>
+      </div> -->
 
   </div>
 
@@ -34,6 +34,7 @@ export default {
 
           gameweeks: [],
           // loading: true,
+          testdata: ['random', 234535, {key: 'string'}, {key2: 234324}]
 
       }
   },
@@ -52,14 +53,14 @@ export default {
                          headers: {
                                       'Access-Control-Allow-Origin': 'https://localhost:8080',
                                       'Content-Type': 'application/json',
-                                      'Access-Control-Allow-Methods': 'GET',
+                                      'Access-Control-Allow-Methods': 'GET',                           
                                     },
                      }
 
-      const proxyURL = 'https://cors-anywhere.herokuapp.com/';
+      // const proxyURL = 'https://cors-anywhere.herokuapp.com/';
       const baseURL = 'https://fantasy.premierleague.com/api/bootstrap-static/';
       
-      axios.get( proxyURL + baseURL, header)
+      axios.get(  baseURL, header)
 
         .then( response => {
     
