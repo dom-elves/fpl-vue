@@ -8,6 +8,12 @@
       <router-link to="/players">Players</router-link> |
       <router-link to="/gameweeks">Gameweeks</router-link>
 
+      <!-- <p>{{ gameweeks }}</p> -->
+
+      <div v-for="gameweek in gameweeks" :key="gameweek.id">
+        {{ gameweek.id }}
+      </div>
+
   </div>
 
   <router-view />
@@ -21,6 +27,16 @@ import axios from 'axios'
 export default {
 
   name: 'App',
+
+  data() {
+
+      return {
+
+          gameweeks: [],
+          // loading: true,
+
+      }
+  },
   
   mounted() {
 
@@ -45,14 +61,17 @@ export default {
       
       axios.get( proxyURL + baseURL, header)
 
-        .then(function (response) {
+        .then( response => {
     
-        let overview = response.data;
-        console.log(overview);
+            let events = response.data.events;
+
+            this.gameweeks = events;
+
+            console.log(this.gameweeks);
       })
-        .catch(function (error) {
+        .catch( error => {
     
-        console.log(error);
+            console.log(error);
       })
   
     }
